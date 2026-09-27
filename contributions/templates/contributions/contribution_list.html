@@ -1,0 +1,61 @@
+{% extends 'accounts/base.html' %}
+{% block title %}My Contributions{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 p-6">
+  <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-8 border border-pink-200">
+
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-3xl font-bold text-pink-600">My Contributions</h1>
+      <a href="{% url 'contributions:add' %}"
+         class="bg-gradient-to-r from-pink-600 to-rose-600 text-white px-5 py-2 rounded-lg shadow hover:scale-105 transition-all duration-300">
+         + Add Contribution
+      </a>
+    </div>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full border-collapse border border-pink-200">
+        <thead class="bg-pink-100 text-pink-800">
+          <tr>
+            <th class="border border-pink-200 px-4 py-2 text-left">Date</th>
+            <th class="border border-pink-200 px-4 py-2 text-left">Amount (Ksh)</th>
+            <th class="border border-pink-200 px-4 py-2 text-left">Method</th>
+            <th class="border border-pink-200 px-4 py-2 text-left">M-Pesa Code</th>
+            <th class="border border-pink-200 px-4 py-2 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in contributions %}
+          <tr class="hover:bg-pink-50 transition">
+            <td class="border border-pink-200 px-4 py-2">{{ c.date|date:"M d, Y H:i" }}</td>
+            <td class="border border-pink-200 px-4 py-2 font-semibold text-pink-700">{{ c.amount }}</td>
+            <td class="border border-pink-200 px-4 py-2">{{ c.get_payment_method_display }}</td>
+            <td class="border border-pink-200 px-4 py-2">{{ c.mpesa_transaction_code|default:"—" }}</td>
+            <td class="border border-pink-200 px-4 py-2">{{ c.notes|default:"—" }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="5" class="text-center text-gray-500 py-6">No contributions recorded yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% for c in contributions %}
+  <div class="bg-white shadow-md rounded-xl p-4 mb-3 border border-gray-200">
+    <p><strong>Amount:</strong> Ksh {{ c.amount }}</p>
+    <p><strong>Method:</strong> {{ c.payment_method }}</p>
+    <p><strong>Date:</strong> {{ c.date|date:"Y-m-d H:i" }}</p>
+
+    <a href="{% url 'contributions:generate_receipt' c.id %}" 
+       class="inline-flex items-center mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-1 rounded-lg text-sm shadow-sm transition-all duration-200">
+       Download Receipt
+    </a>
+  </div>
+{% empty %}
+  <p class="text-gray-600 text-center mt-6">No contributions found.</p>
+{% endfor %}
+
+
+  </div>
+</div>
+{% endblock %}

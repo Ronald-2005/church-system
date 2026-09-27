@@ -1,0 +1,57 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto mt-10 px-4">
+
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold text-slate-800 dark:text-slate-200">
+            📢 Church Announcements
+        </h2>
+
+        {% if user.is_staff %}
+        <a href="{% url 'announcements:announcement_add' %}"
+           class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold transition-all">
+            + Add Announcement
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for a in announcements %}
+        <div class="group bg-white shadow-md rounded-xl p-5 border border-gray-100 hover:shadow-xl transition-all duration-300">
+            
+            <h3 class="text-xl font-bold text-slate-800 group-hover:text-purple-600 transition-colors">
+                {{ a.title }}
+            </h3>
+
+            <p class="text-sm text-gray-600 mt-2 line-clamp-2">{{ a.content }}</p>
+
+            <p class="text-xs text-gray-500 mt-2">
+                Posted on: {{ a.created_at|date:"M d, Y" }}
+            </p>
+
+            <div class="flex justify-between items-center mt-4">
+                <a href="{% url 'announcements:announcement_detail' a.pk %}"
+                   class="text-purple-600 font-semibold text-sm hover:underline">
+                    Read More →
+                </a>
+
+                {% if user.is_staff %}
+                <div class="flex space-x-3">
+                    <a href="{% url 'announcements:announcement_edit' a.pk %}"
+                       class="text-blue-600 hover:text-blue-800 text-sm font-semibold">Edit</a>
+                    <a href="{% url 'announcements:announcement_delete' a.pk %}"
+                       class="text-red-600 hover:text-red-800 text-sm font-semibold">Delete</a>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+        {% empty %}
+        <p class="text-center text-gray-500 col-span-2 mt-10">No announcements available.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

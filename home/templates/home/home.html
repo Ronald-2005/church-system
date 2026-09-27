@@ -1,0 +1,173 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Welcome to ABC Church{% endblock %}
+{% block content %}
+<style>
+  .elegant-background-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* make sure it covers the screen */
+    overflow: hidden;
+    background-image: url("https://cdn.pixabay.com/photo/2017/03/27/15/16/man-2179326_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+  }
+
+  /* Soft transparent gradient overlay */
+  .elegant-background-container::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(240, 230, 255, 0.8) 0%,
+      rgba(224, 207, 252, 0.6) 30%,
+      rgba(252, 221, 236, 0.5) 70%,
+      rgba(255, 237, 244, 0.6) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Subtle light focus effect */
+  .elegant-background-container::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.2) 70%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
+    z-index: 2;
+  }
+
+  .content-overlay {
+    position: relative;
+    z-index: 3; /* content above both overlays */
+  }
+</style>
+
+
+
+<div class="min-h-screen elegant-background-container flex items-center justify-center">
+    
+    <div class="content-overlay w-full px-4 sm:px-8 lg:px-16 py-16">
+        
+        <div class="text-center mb-20 space-y-8">
+            
+            <div class="inline-block mb-6">
+                <div class="w-20 h-20 mx-auto flex items-center justify-center rounded-full bg-gradient-to-br from-purple-50 to-pink-100 border border-gray-200 shadow-md">
+                    <span class="text-4xl text-purple-700">✝</span>
+                </div>
+            </div>
+            
+            <div class="space-y-4">
+                <h1 class="text-6xl md:text-7xl font-serif font-light text-gray-800 tracking-wide">
+                    ABC Church Management system
+                </h1>
+                
+                <div class="w-24 h-px bg-gradient-to-r from-transparent via-purple-600 to-transparent mx-auto"></div>
+                
+                <p class="text-xl md:text-2xl text-gray-700 font-light tracking-wide max-w-4xl mx-auto leading-relaxed font-sans">
+                    we're glad you are here -Welcome back,servant of God. May you feel God's love and peace.
+
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-xl mx-auto mb-20">
+            <div class="grid md:flex md:flex-col items-center gap-8">
+                
+                <a href="{% url 'accounts:login' %}" class="group block w-full md:max-w-lg">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-10 shadow-lg border border-gray-200 transition-all duration-500 hover:shadow-2xl hover:border-purple-300 hover:-translate-y-1">
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-50 to-pink-100 flex items-center justify-center border border-purple-200 group-hover:scale-105 transition-transform duration-300">
+                                    <svg class="w-7 h-7 text-purple-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                                    </svg>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-2xl font-serif text-gray-800 mb-1">
+                                        Member Login
+                                    </h3>
+                                    <p class="text-gray-600 leading-relaxed font-sans text-sm">
+                                        Access your account and spiritual resources
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center text-purple-700 font-medium group-hover:text-purple-800 transition-colors">
+                                <span class="mr-2">Enter Dashboard</span>
+                                <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="{% url 'accounts:register' %}" class="group block w-full md:max-w-lg">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-10 shadow-lg border border-gray-200 transition-all duration-500 hover:shadow-2xl hover:border-pink-300 hover:-translate-y-1">
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-50 to-white flex items-center justify-center border border-pink-200 group-hover:scale-105 transition-transform duration-300">
+                                    <svg class="w-7 h-7 text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                    </svg>
+                                </div>
+                                
+                                <div>
+                                    <h3 class="text-2xl font-serif text-gray-800 mb-1">
+                                        New Member
+                                    </h3>
+                                    <p class="text-gray-600 leading-relaxed font-sans text-sm">
+                                        Join our family and community of faith
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center text-pink-700 font-medium group-hover:text-pink-800 transition-colors">
+                                <span class="mr-2">Register Now</span>
+                                <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-3xl mx-auto mt-20">
+            <div class="bg-white/80 backdrop-blur-sm rounded-xl p-12 border border-gray-200 shadow-sm">
+                <div class="text-center space-y-6">
+                    <svg class="w-10 h-10 mx-auto text-purple-600/50" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    
+                    <p class="text-xl md:text-2xl text-gray-700 font-serif italic leading-relaxed">
+                        "But those who hope in the lord will renew their strength.They will soar on wings like Eagles;they will run and not grow weary,they will walk and not be faint."
+                    </p>
+                    
+                    <div class="w-16 h-px bg-gradient-to-r from-transparent via-purple-600 to-transparent mx-auto"></div>
+                    
+                    <p class="text-gray-600 font-medium tracking-wider text-sm uppercase font-sans">
+                        Isaiah 40:31
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <p class="text-gray-600 text-sm font-light tracking-wide font-sans">
+                ABC. Rising in Faith • Built on Love • Sustained by Grace
+            </p>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ABC Church System{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Dark mode toggle persistence
+        if (localStorage.getItem('theme') === 'dark' ||
+            (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+
+<body class="h-full bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-white dark:bg-gray-800 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="/" class="text-xl font-bold text-indigo-600 dark:text-indigo-400">
+                ABC Church
+            </a>
+
+            <div class="flex items-center space-x-4">
+                {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                        <a href="{% url 'accounts:admin_dashboard' %}" class="hover:text-indigo-500">
+                            Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{% url 'accounts:member_dashboard' %}" class="hover:text-indigo-500">
+                            Dashboard
+                        </a>
+                    {% endif %}
+                    <a href="{% url 'accounts:profile' %}" class="hover:text-indigo-500">Profile</a>
+                    <a href="{% url 'accounts:logout' %}" 
+                       class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">
+                        Logout
+                    </a>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}" class="hover:text-indigo-500">Login</a>
+                    <a href="{% url 'accounts:register' %}" 
+                       class="bg-indigo-600 text-white px-3 py-1 rounded hover:bg-indigo-700">
+                        Register
+                    </a>
+                {% endif %}
+
+                <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="ml-2 p-2 rounded bg-gray-200 dark:bg-gray-700">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="max-w-6xl mx-auto mt-8 px-4">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="mt-10 text-center py-4 text-sm text-gray-500 dark:text-gray-400">
+        © {{ now|date:"Y" }} ABC Church System. All rights reserved.
+    </footer>
+
+    <script>
+        // Dark mode toggle behavior
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    </script>
+</body>
+</html>

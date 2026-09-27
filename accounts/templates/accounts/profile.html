@@ -1,0 +1,35 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="max-w-xl mx-auto mt-10 p-6 bg-gray-100 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold mb-4 text-gray-800">Your Profile</h1>
+
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>First Name:</strong> {{ user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <p><strong>Role:</strong> {{ user.role|title }}</p>
+
+    <div class="mt-6 flex flex-wrap gap-3">
+        <a href="{% url 'accounts:edit_profile' %}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+            Edit Profile
+        </a>
+
+        {% if user.role == 'admin' %}
+        <a href="{% url 'accounts:admin_dashboard' %}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+            Admin Dashboard
+        </a>
+        {% elif user.role == 'member' %}
+        <a href="{% url 'accounts:member_dashboard' %}" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+            Member Dashboard
+        </a>
+        {% endif %}
+
+        <a href="{% url 'accounts:logout' %}" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">
+            Logout
+        </a>
+    </div>
+</div>
+{% endblock %}

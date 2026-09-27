@@ -1,0 +1,206 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Member Dashboard{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 py-6 px-4">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header Section -->
+    <div class="bg-white rounded-xl shadow-md p-6 mb-6 border border-pink-200">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div>
+          <h1 class="text-3xl font-bold bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent mb-2">
+            Welcome Back, {{ user.username }}
+          </h1>
+          <p class="text-slate-600 flex items-center gap-2">
+            <span class="inline-block w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            Member Dashboard
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-right">
+            <p class="text-xs text-slate-500">Current Role</p>
+            <span class="inline-block px-3 py-1 bg-pink-100 text-pink-700 rounded-full text-sm font-semibold">
+              Member Access
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Description Card -->
+    <div class="bg-gradient-to-r from-pink-500 to-rose-500 rounded-xl shadow-md p-4 mb-6 text-white">
+      <p class="leading-relaxed">
+        Welcome to your member dashboard. Access your profile, view upcoming ceremonies, check your contributions, and stay connected with the community.
+      </p>
+    </div>
+
+    <!-- Dashboard Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- My Profile Card -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-pink-200 hover:border-pink-400">
+        <div class="p-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-rose-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-pink-600 transition-colors">
+            My Profile
+          </h2>
+          <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+            View and update your personal information and settings.
+          </p>
+          <a href="{% url 'accounts:edit_profile' %}" class="inline-flex items-center gap-2 text-pink-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+            Edit Profile
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="h-1 bg-gradient-to-r from-pink-500 to-rose-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+      </div>
+
+      <!-- Ministries Card for Members Dashboard -->
+<div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-green-200 hover:border-teal-300">
+  <div class="p-4">
+    <!-- Icon -->
+    <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M12 6v6h4m-4 0H8m4-6a6 6 0 016 6 6 6 0 11-6-6z"></path>
+      </svg>
+    </div>
+
+    <h2 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-green-600 transition-colors">
+      Church Ministries
+    </h2>
+
+    <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+      Explore church ministries and join the one where you feel called to serve.
+    </p>
+
+    <a href="{% url 'ministries:ministry_list' %}" class="inline-flex items-center gap-2 text-green-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+      View Ministries
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Hover Gradient Bar -->
+  <div class="h-1 bg-gradient-to-r from-green-500 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+</div>
+
+
+      <!-- Ceremonies Card -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-pink-200 hover:border-purple-300">
+        <div class="p-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-purple-600 transition-colors">
+            Ceremonies
+          </h2>
+          <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+            View upcoming church ceremonies and events schedule.
+          </p>
+          <a href="{% url 'ceremonies:ceremony_list' %}" class="inline-flex items-center gap-2 text-purple-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+            View Ceremonies
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="h-1 bg-gradient-to-r from-purple-500 to-pink-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+      </div>
+
+      
+      <!-- My Contributions Card -->
+<div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-pink-200 hover:border-emerald-300">
+  <div class="p-4">
+    <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+    </div>
+    <h2 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-emerald-600 transition-colors">
+      My Contributions
+    </h2>
+    <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+      View your giving history and contribution records.
+    </p>
+    <a href="{% url 'contributions:list' %}" class="inline-flex items-center gap-2 text-emerald-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+      View Contributions
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+      </svg>
+    </a>
+  </div>
+  <div class="h-1 bg-gradient-to-r from-emerald-500 to-teal-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+</div>
+
+
+
+      <!-- Announcements Card (Member Dashboard) -->
+<div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-pink-200 hover:border-indigo-300">
+  <div class="p-4">
+    <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-blue-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M18 10a6 6 0 11-12 0 6 6 0 0112 0zM13 15h-2v2h2v-2zM12 8v4"></path>
+      </svg>
+    </div>
+
+    <h2 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors">
+      Announcements
+    </h2>
+
+    <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+      Stay updated with the latest church events & news.
+    </p>
+
+    <a href="{% url 'announcements:announcement_list' %}" 
+       class="inline-flex items-center gap-2 text-indigo-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+      View Announcements
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+      </svg>
+    </a>
+  </div>
+
+  <div class="h-1 bg-gradient-to-r from-indigo-600 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+</div>
+
+
+      <!-- Logout Card -->
+      <div class="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-pink-200 hover:border-red-300">
+        <div class="p-4">
+          <div class="w-10 h-10 bg-gradient-to-br from-red-500 to-rose-600 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+            </svg>
+          </div>
+          <h2 class="text-lg font-bold mb-2 text-red-600 group-hover:text-red-700 transition-colors">
+            Logout
+          </h2>
+          <p class="text-slate-600 text-sm mb-3 leading-relaxed">
+            Sign out securely from your member account.
+          </p>
+          <a href="{% url 'accounts:logout' %}" class="inline-flex items-center gap-2 text-red-600 font-semibold text-sm hover:gap-3 transition-all duration-300">
+            Logout
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="h-1 bg-gradient-to-r from-red-500 to-rose-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

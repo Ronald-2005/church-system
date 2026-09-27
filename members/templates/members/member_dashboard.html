@@ -1,0 +1,51 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Member Dashboard{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-8 p-6 bg-gray-100 rounded-lg shadow">
+  <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+  <p class="mb-4 text-gray-700">
+    This is your dashboard. Access your profile, contributions, and upcoming events.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Profile -->
+    <div class="p-4 bg-white rounded shadow hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">Profile</h2>
+      <p>View or edit your profile information.</p>
+      <a href="{% url 'accounts:edit_profile' %}" class="mt-2 inline-block text-blue-600 underline">Edit Profile</a>
+    </div>
+
+<!-- Contributions -->
+<div class="p-4 bg-white rounded shadow hover:shadow-lg transition">
+  <h2 class="text-xl font-semibold mb-2">Contributions</h2>
+  <p>View your giving history.</p>
+  {% if user.is_staff %}
+    <a href="{% url 'contributions:list' %}" class="mt-2 inline-block text-blue-600 underline hover:text-blue-800 transition">
+      Manage All Contributions
+    </a>
+  {% else %}
+    <a href="{% url 'contributions:list' %}" class="mt-2 inline-block text-blue-600 underline hover:text-blue-800 transition">
+      View My Contributions
+    </a>
+  {% endif %}
+</div>
+
+
+
+    <!-- Events -->
+    <div class="p-4 bg-white rounded shadow hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">Events</h2>
+      <p>Check upcoming events and ceremonies.</p>
+      <a href="#" class="mt-2 inline-block text-blue-600 underline">View Events</a>
+    </div>
+
+    <!-- Logout -->
+    <div class="p-4 bg-white rounded shadow hover:shadow-lg transition">
+      <h2 class="text-xl font-semibold mb-2">Logout</h2>
+      <p>Sign out safely.</p>
+      <a href="{% url 'accounts:logout' %}" class="mt-2 inline-block text-red-600 underline">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

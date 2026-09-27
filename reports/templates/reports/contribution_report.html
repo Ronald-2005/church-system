@@ -1,0 +1,32 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-2xl font-bold mb-4">Contribution Report</h2>
+    <a href="{% url 'reports:download_contribution_report' %}" class="bg-green-600 text-white px-4 py-2 rounded">Download Excel</a>
+
+    <table class="table-auto w-full mt-4 border-collapse border border-gray-300">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="border px-3 py-2">#</th>
+                <th class="border px-3 py-2">Member</th>
+                <th class="border px-3 py-2">Amount</th>
+                <th class="border px-3 py-2">Type</th>
+                <th class="border px-3 py-2">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in contributions %}
+            <tr>
+                <td class="border px-3 py-2">{{ c.id }}</td>
+                <td class="border px-3 py-2">{{ c.member.first_name }} {{ c.member.last_name }}</td>
+                <td class="border px-3 py-2">{{ c.amount }}</td>
+                <td class="border px-3 py-2">{{ c.contribution_type }}</td>
+                <td class="border px-3 py-2">{{ c.date }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center py-3">No contributions found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

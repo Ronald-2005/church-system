@@ -1,0 +1,13 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Member Profile{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto mt-8 p-6 bg-white dark:bg-gray-800 rounded shadow">
+  <h1 class="text-3xl font-bold mb-4">{{ member.full_name }}</h1>
+  <p><strong>Email:</strong> {{ member.user.email }}</p>
+  <p><strong>Phone:</strong> {{ member.phone }}</p>
+  <p><strong>Gender:</strong> {{ member.gender }}</p>
+  <p><strong>Date of Birth:</strong> {{ member.date_of_birth }}</p>
+  <p><strong>Address:</strong> {{ member.address }}</p>
+</div>
+{% endblock %}

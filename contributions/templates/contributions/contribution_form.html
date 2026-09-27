@@ -1,0 +1,28 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Add Contribution{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 flex justify-center items-center py-10 px-4">
+  <div class="bg-white shadow-xl border border-pink-200 rounded-3xl p-10 max-w-2xl w-full">
+    <h1 class="text-3xl font-bold mb-6 bg-gradient-to-r from-pink-600 to-rose-600 bg-clip-text text-transparent text-center">
+      Record New Contribution
+    </h1>
+
+    <form method="post" class="space-y-4">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <button type="submit"
+              class="w-full py-3 bg-gradient-to-r from-pink-600 to-rose-600 text-white font-semibold rounded-lg shadow hover:scale-[1.02] transition">
+        Save Contribution
+      </button>
+    </form>
+
+    <div class="mt-6 text-center">
+      <a href="{% url 'contributions:list' %}" class="text-pink-600 hover:underline text-sm">
+        ← Back to My Contributions
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

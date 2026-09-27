@@ -1,0 +1,51 @@
+{% extends 'accounts/base.html' %}
+{% block title %}Ceremony Details{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto bg-white p-6 mt-8 shadow rounded">
+
+  <h1 class="text-3xl font-bold text-indigo-700 mb-3">
+    {{ ceremony.ceremony_type }}
+  </h1>
+
+  <p class="text-gray-700">
+    📅 <span class="font-semibold">Date:</span> {{ ceremony.date }}
+  </p>
+
+  <p class="text-gray-700 mt-1">
+    📍 <span class="font-semibold">Location:</span> {{ ceremony.location }}
+  </p>
+
+  <p class="text-gray-700 mt-1">
+    🙏 <span class="font-semibold">Officiated By:</span> {{ ceremony.officiated_by }}
+  </p>
+
+  {% if ceremony.description %}
+  <div class="mt-4">
+    <h3 class="text-xl font-semibold text-gray-800">Description</h3>
+    <p class="text-gray-600 mt-1">{{ ceremony.description }}</p>
+  </div>
+  {% endif %}
+
+  <hr class="my-6">
+
+  <div class="flex justify-between">
+    <a href="{% url 'ceremonies:ceremony_list' %}"
+       class="text-blue-600 hover:underline">⬅ Back to Ceremonies</a>
+
+    {% if user.is_staff %}
+    <div class="flex gap-3">
+      <a href="{% url 'ceremonies:edit_ceremony' ceremony.pk %}"
+         class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">
+         ✏ Edit
+      </a>
+      <a href="{% url 'ceremonies:delete_ceremony' ceremony.pk %}"
+         class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+         🗑 Delete
+      </a>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}
